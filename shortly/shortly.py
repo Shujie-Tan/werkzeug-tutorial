@@ -47,6 +47,13 @@ class Shortly(object):
         self.redis.set(f'reverse-url:{url}', short_id)
         return short_id
 
+    def on_follow_short_link(self, request, short_id):
+        link_target = self.redis.get(f'url-target:{short_id}')
+        if link_target is None:
+            raise NotFound()
+        self.redis.incr(f'click-count:{short_id}')
+        return redirect(link_target)
+
     def dispatch_request(self, request):
         adapter = self.url_map.bind_to_environ(request.environ)
         try:
