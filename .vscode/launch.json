@@ -8,7 +8,7 @@
             "name": "Python: shortly",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceRoot}/shortly/shortly.py",
+            "program": "${workspaceRoot}/app.py",
             "console": "integratedTerminal",
             "justMyCode": false
         }
